@@ -203,6 +203,17 @@ describe('toHaveStyleRule', () => {
     expect(result.pass).toBeTruthy();
   });
 
+  test('should work with react-test-renderer for dynamic prop', () => {
+    const component = ReactTestRenderer.create(<Button hide />);
+    const result = toHaveStyleRule(component, 'display', 'none');
+    expect(result.message).toEqual(getMessage({
+      expected: 'none',
+      received: 'none',
+      selector: 'display',
+    }));
+    expect(result.pass).toBeTruthy();
+  });
+
   test('should work with react-test-renderer/shallow', () => {
     const renderer = new ShallowRenderer();
     renderer.render(<Button />);
@@ -216,6 +227,19 @@ describe('toHaveStyleRule', () => {
     expect(result.pass).toBeTruthy();
   });
 
+  test('should work with react-test-renderer/shallow for dynamic prop', () => {
+    const renderer = new ShallowRenderer();
+    renderer.render(<Button hide />);
+    const component = renderer.getRenderOutput();
+    const result = toHaveStyleRule(component, 'display', 'none');
+    expect(result.message).toEqual(getMessage({
+      expected: 'none',
+      received: 'none',
+      selector: 'display',
+    }));
+    expect(result.pass).toBeTruthy();
+  });
+
   test('should work with enzyme shallow rendering', () => {
     const component = shallow(<Button />);
     const result = toHaveStyleRule(component, 'color', 'blue');
@@ -223,6 +247,17 @@ describe('toHaveStyleRule', () => {
       expected: 'blue',
       received: 'blue',
       selector: 'color',
+    }));
+    expect(result.pass).toBeTruthy();
+  });
+
+  test('should work with enzyme shallow rendering for dynamic prop', () => {
+    const component = shallow(<Button hide />);
+    const result = toHaveStyleRule(component, 'display', 'none');
+    expect(result.message).toEqual(getMessage({
+      expected: 'none',
+      received: 'none',
+      selector: 'display',
     }));
     expect(result.pass).toBeTruthy();
   });

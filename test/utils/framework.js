@@ -19,4 +19,5 @@ export const fadeIn = keyframes`
 export const Button = styled.button`
   color: blue;
   background-color: red;
+  display: ${props => (props.hide ? 'none' : 'block')};
 `;

@@ -9,3 +9,4 @@ _book
 .nyc_output
 TODO.md
 package-lock.json
+.idea
