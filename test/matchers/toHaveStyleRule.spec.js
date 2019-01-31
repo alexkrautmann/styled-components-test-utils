@@ -10,6 +10,7 @@ import toHaveStyleRule from '../../src/matchers/toHaveStyleRule';
 const Button = styled.button`
   color: blue;
   background-color: red;
+  display: ${props => (props.hide ? 'none' : 'block')};
 
   &:hover {
     color: white;
